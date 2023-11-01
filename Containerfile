@@ -34,15 +34,26 @@ RUN git clone https://github.com/89luca89/distrobox.git --single-branch /tmp/dis
 
 # Install packages Distrobox adds automatically, this speeds up first launch
 RUN pacman -S \
+	aspell \
+	aspell-en \
+	atuin \
         bash-completion \
+	bat \
         bc \
+	cmake \
         curl \
         diffutils \
+	emacs-wayland \
+	eza \
+	fd \
         findutils \
+	fish \
+	gcc \
         glibc \
         gnupg \
         inetutils \
         keyutils \
+	lazygit \
         less \
         lsof \
         man-db \
@@ -50,32 +61,31 @@ RUN pacman -S \
         mlocate \
         mtr \
         ncurses \
+	neovim \
         nss-mdns \
         openssh \
         pigz \
         pinentry \
-        procps-ng \
+	ripgrep \
         rsync \
         shadow \
+	skim \
         sudo \
         tcpdump \
+	tealdeer \
         time \
-        traceroute \
-        tree \
         tzdata \
         unzip \
         util-linux \
         util-linux-libs \
         vte-common \
         wget \
-        words \
         xorg-xauth \
+	xplr \
         zip \
+	zoxide \
         mesa \
         opengl-driver \
-        vulkan-intel \
-        vte-common \
-        vulkan-radeon \
         --noconfirm
 
 # Add paru and install AUR packages
@@ -89,6 +99,11 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
     paru -S \
         aur/xcursor-breeze \
         aur/adw-gtk3 \
+	aur/emacs-libvterm-git \
+	aur/emacs-all-the-icons \
+	aur/emacs-all-the-icons-dired-git \
+	aur/thorium-browser-bin \
+	aur/wezterm-git \
         --noconfirm
 USER root
 WORKDIR /
@@ -103,28 +118,6 @@ RUN sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && \
         /tmp/* \
         /var/cache/pacman/pkg/*
 
-FROM arch-distrobox AS arch-distrobox-amdgpupro
-
-# Install amdgpu-pro, remove other drivers
-RUN pacman -R \
-        libglvnd \
-        vulkan-intel \
-        vulkan-radeon \
-        mesa \
-        --noconfirm && \
-    useradd -m --shell=/bin/bash build && usermod -L build && \
-    echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
-    echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-USER build
-WORKDIR /home/build
-RUN paru -S \
-        amdgpu-pro-oglp \
-        lib32-amdgpu-pro-oglp \
-        vulkan-amdgpu-pro \
-        lib32-vulkan-amdgpu-pro \
-        amf-amdgpu-pro \
-        --noconfirm
 USER root
 WORKDIR /
 
