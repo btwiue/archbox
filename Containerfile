@@ -40,6 +40,7 @@ RUN pacman -S \
         bash-completion \
 	bat \
         bc \
+	bottom \
 	cmake \
         curl \
         diffutils \
@@ -62,6 +63,7 @@ RUN pacman -S \
         mtr \
         ncurses \
 	neovim \
+	nnn \
         nss-mdns \
         openssh \
         pigz \
