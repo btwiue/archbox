@@ -81,6 +81,7 @@ RUN pacman -S \
         util-linux \
         util-linux-libs \
         vte-common \
+        wezterm \
         wget \
         xorg-xauth \
 	xplr \
@@ -104,8 +105,7 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
 	aur/emacs-libvterm-git \
 	aur/emacs-all-the-icons \
 	aur/emacs-all-the-icons-dired-git \
-	aur/thorium-browser-bin \
-	aur/wezterm-git \
+	aur/brave-nightly-bin \
         --noconfirm
 USER root
 WORKDIR /
