@@ -53,6 +53,7 @@ RUN pacman -S \
         glibc \
         gnupg \
         inetutils \
+	just \
         keyutils \
 	lazygit \
         less \
